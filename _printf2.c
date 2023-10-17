@@ -1,6 +1,6 @@
 #include <stdarg.h>
 #include <unistd.h>
-
+#include <stdio.h>
 /**
  * print_char - Helper function to print a single character
  * @args: va_list containing the arguments
