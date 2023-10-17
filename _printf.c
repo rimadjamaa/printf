@@ -1,7 +1,7 @@
 
 #include <stdarg.h>
 #include <unistd.h>
-
+#include <string.h>
 /**
  * print_char - Helper function to print a single character
  * @args: va_list containing the arguments
@@ -43,7 +43,7 @@ int _printf(const char *format, ...)
 va_list args;
 int count = 0;
 const char *ptr;
-
+char *str;
 va_start(args, format);
 
 for (ptr = format; *ptr != '\0'; ptr++)
@@ -57,7 +57,11 @@ case 'c':
 print_char(args, &count);
 break;
 case 's':
-print_string(args, &count);
+str = va_arg(args, char *);
+if (str == NULL)
+str = "(null)";
+count += write(1, str, strlen(str));
+break;
 break;
 case '%':
 write(1, "%", 1);
