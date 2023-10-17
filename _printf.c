@@ -1,5 +1,36 @@
+
 #include <stdarg.h>
 #include <unistd.h>
+
+/**
+ * print_char - Helper function to print a single character
+ * @args: va_list containing the arguments
+ * @count: Pointer to the count of printed characters
+ */
+void print_char(va_list args, int *count)
+{
+char c = va_arg(args, int);
+write(1, &c, 1);
+(*count)++;
+}
+
+/**
+ * print_string - Helper function to print a string
+ * @args: va_list containing the arguments
+ * @count: Pointer to the count of printed characters
+ */
+void print_string(va_list args, int *count)
+{
+char *str = va_arg(args, char *);
+if (str == NULL)
+str = "(null)";
+while (*str != '\0')
+{
+write(1, str, 1);
+str++;
+(*count)++;
+}
+}
 
 /**
  * _printf - Custom printf function
@@ -23,26 +54,29 @@ ptr++;
 switch (*ptr)
 {
 case 'c':
-count += write(1, va_arg(args, int), 1);
+print_char(args, &count);
 break;
 case 's':
-count += write(1, va_arg(args, char *), 1);
+print_string(args, &count);
 break;
 case '%':
-count += write(1, "%", 1);
+write(1, "%", 1);
+count++;
 break;
 default:
-count += write(1, "%", 1);
-count += write(1, ptr, 1);
+write(1, "%", 1);
+write(1, ptr, 1);
+count += 2;
 }
 }
 else
 {
-count += write(1, ptr, 1);
+write(1, ptr, 1);
+count++;
 }
 }
 
 va_end(args);
 
-return count;
+return (count);
 }
