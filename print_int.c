@@ -1,3 +1,5 @@
+#include <stdarg.h>
+#include <unistd.h>
 /**
  * power - Calculate the power of a number.
  * @base: The base.

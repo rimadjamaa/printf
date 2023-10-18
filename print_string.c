@@ -1,3 +1,5 @@
+#include <stdarg.h>
+#include <unistd.h>
 /**
  * print_string - Helper function to print a string
  * @args: va_list containing the arguments
