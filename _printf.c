@@ -1,6 +1,3 @@
-
-
-
 #include <stdarg.h>
 #include <unistd.h>
 
@@ -49,7 +46,6 @@ write(1, ptr, 1);
 count++;
 }
 }
-
 va_end(args);
 return (count);
 }
