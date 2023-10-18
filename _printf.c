@@ -12,7 +12,6 @@ char c = va_arg(args, int);
 write(1, &c, 1);
 (*count)++;
 }
-
 /**
  * print_string - Helper function to print a string
  * @args: va_list containing the arguments
@@ -30,7 +29,6 @@ str++;
 (*count)++;
 }
 }
-
 /**
  * _printf - Custom printf function
  * @format: Format string
@@ -44,7 +42,6 @@ int count = 0;
 const char *ptr;
 char *str;
 va_start(args, format);
-
 for (ptr = format; *ptr != '\0'; ptr++)
 {
 if (*ptr == '%' && *(ptr + 1) != '\0')
@@ -78,8 +75,6 @@ write(1, ptr, 1);
 count++;
 }
 }
-
 va_end(args);
-
 return (count);
 }
